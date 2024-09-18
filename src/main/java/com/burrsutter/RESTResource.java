@@ -29,8 +29,10 @@ public class RESTResource {
     @GET
     @Path("/helloaijson")
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONResponse helloaijson() {
-        return aijsongreeter.greet("Burr");
+    public String helloaijson() {
+        String result = aijsongreeter.greet("Burr").toString();
+        System.out.println(result);
+        return result;
     }
 
 
