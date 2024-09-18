@@ -58,20 +58,21 @@ public class RESTResource {
     @GET
     @Path("/cosigntest")
     @Produces(MediaType.APPLICATION_JSON)
-    public String consigntest(String input1, String input2) {
+    public String consigntest() {
         
         ObjectMapper mapper = new ObjectMapper();
 
-        // who is Burr Sutter in 15 words or less?
+        // Who is Burr Sutter in 25 words or less?
 
-        // String input1 = "Burr Sutter is an American musician and writer."; // mistral-nemo:12b
-        // String input2 = "Burr Sutter is a former Canadian football player and actor."; // llama3.1
+        String input1 = "Burr Sutter is a software engineer and consultant, specializing in Angular. (Twitter: @burrsutter)"; // mistral-nemo:12b
+        String input2 = "Burr Sutter was a Canadian football player, coach, and sports broadcaster; also known for his on-air antics as a\n" + //
+                        "colour commentator."; // llama3.1
 
         TestTwoStringsResponse response = aicosigntester.test(input1, input2);
 
         System.out.println(response.score());
 
-        // System.out.println(response.output);
+        System.out.println(response.output());
 
         String json = null;
         
