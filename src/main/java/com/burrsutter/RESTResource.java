@@ -28,7 +28,7 @@ public class RESTResource {
 
     @GET
     @Path("/helloaijson")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public JSONResponse helloaijson() {
         return aijsongreeter.greet("Burr");
     }
