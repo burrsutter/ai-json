@@ -11,7 +11,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RESTResource {
 
     @Inject AIGreetingService aigreeter;
+
     @Inject AIJSONService aijsongreeter;
+
     @Inject AITestTwoStringsService aicosigntester;
 
     @GET
@@ -57,10 +59,18 @@ public class RESTResource {
     @Path("/cosigntest")
     @Produces(MediaType.APPLICATION_JSON)
     public String consigntest(String input1, String input2) {
+        
         ObjectMapper mapper = new ObjectMapper();
+
+        // who is Burr Sutter in 15 words or less?
+
+        // String input1 = "Burr Sutter is an American musician and writer."; // mistral-nemo:12b
+        // String input2 = "Burr Sutter is a former Canadian football player and actor."; // llama3.1
+
         TestTwoStringsResponse response = aicosigntester.test(input1, input2);
 
         System.out.println(response.score());
+
         // System.out.println(response.output);
 
         String json = null;
