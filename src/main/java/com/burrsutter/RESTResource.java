@@ -5,6 +5,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/")
 public class RESTResource {
@@ -30,9 +31,25 @@ public class RESTResource {
     @Path("/helloaijson")
     @Produces(MediaType.APPLICATION_JSON)
     public String helloaijson() {
-        String result = aijsongreeter.greet("Burr").toString();
-        System.out.println(result);
-        return result;
+        ObjectMapper mapper = new ObjectMapper();
+        
+        JSONResponse response = aijsongreeter.greet("Burr");
+
+        String json = null;
+        
+        try {
+            json = mapper.writeValueAsString(response);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\n" + json + "\n");
+
+        System.out.println("score: " + response.score());
+
+        // String stringresult = response.toString();
+        
+        return json;
     }
 
 
